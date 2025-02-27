@@ -1,0 +1,37 @@
+<div class="container p-4 w-[90%] mx-auto">
+    <div
+      class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-col-3 lg:grid-cols-5"
+    >
+      @for (product of wishlistdata ; track product.id) {
+      <div class="product p-4">
+        <div [routerLink]="['/Prod-details', product._id ]">
+
+          <div class="mt-4">
+            <img [src]="product.imageCover" [alt]="product.title" />
+          </div>
+          <div class="mt-4">
+            <h1>{{ product.title}}</h1>
+          
+          </div>
+          <div class="flex mt-4 flex-wrap justify-between items-center">
+            <h3>{{ product.price }}</h3>
+            <span
+              ><i class="rating-color fa-color fa-solid fa-star"></i
+              >{{ product.ratingsAverage }}</span
+            >
+          </div>
+
+
+        </div>
+       
+        <div class="flex justify-center items-center ms-2">
+          <button  type="button" class="but mt-3  text-white bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-2 py-2.5 me-2 mb-2">Add To Cart</button>
+          <button  type="button"  (click)="remove(product.id)"   class="but  mt-3  text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-2 py-2.5 me-2 mb-2">remove</button>
+
+        </div>
+      </div>
+
+
+      }
+    </div>
+  </div>

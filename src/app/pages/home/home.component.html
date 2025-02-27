@@ -1,0 +1,145 @@
+<!-- static slider -->
+<section class="p-4 my-5 relative">
+  <div class="container w-[90%] mx-auto">
+    <div class="flex flex-wrap">
+      <div class="w-full sm:w-full md:w-1/2 lg:w-3/4">
+        <owl-carousel-o [options]="staticOptions">
+          <ng-template carouselSlide
+            ><img src="./images/img1.avif" class="h-80" alt=""
+          /></ng-template>
+          <ng-template carouselSlide
+            ><img src="./images/img2.avif" class="h-80" alt=""
+          /></ng-template>
+          <ng-template carouselSlide
+            ><img src="./images/img3.avif" class="h-80" alt=""
+          /></ng-template>
+          <ng-template carouselSlide
+            ><img src="./images/img4.avif" class="h-80" alt=""
+          /></ng-template>
+          <ng-template carouselSlide
+            ><img src="./images/img5.avif" class="h-80" alt=""
+          /></ng-template>
+          <ng-template carouselSlide
+            ><img src="./images/img6.avif" class="h-80" alt=""
+          /></ng-template>
+          <ng-template carouselSlide
+            ><img src="./images/img7.avif" class="h-80" alt=""
+          /></ng-template>
+        </owl-carousel-o>
+      </div>
+
+      <div class="w-full sm:w-full md:w-1/2 lg:w-1/4">
+        <img src="./images/grocery-banner.png" class="h-40 w-[100%]" alt="" />
+        <img
+          src="./images/grocery-banner-2.jpeg"
+          class="h-40 w-[100%]"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- dynamic slider -->
+@if(productdata != null && catodata!= null) {
+
+<section>
+  <div class="container w-[90%] mx-auto cursor-pointer" routerLink="/categories">
+    <owl-carousel-o [options]="customOptions">
+      @for (cato of catodata; track cato._id) {
+
+      <ng-template carouselSlide>
+        <div>
+          <img [src]="cato.image" [alt]="cato.name" class="w-full h-[250px]" />
+        </div>
+        <h1 class="text-center">{{ cato.name }}</h1>
+      </ng-template>
+
+      }
+    </owl-carousel-o>
+  </div>
+</section>
+
+<!-- products -->
+
+<section class="my-4 p-4">
+  <!-- serach bar -->
+
+  <div class="max-w-md mx-auto">
+    <div
+      class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden"
+    >
+      <div class="grid place-items-center h-full w-12 text-gray-300">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
+        </svg>
+      </div>
+
+      <input
+        [(ngModel)]="searchvalue"
+        class="peer h-full w-full outline-none text-sm text-gray-700 focus:border-4 focus:border-green-500 pr-2"
+        type="text"
+        id="search"
+        placeholder="Search something.."
+      />
+    </div>
+  </div>
+
+  <div class="container p-4 w-[90%] mx-auto">
+    <div
+      class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-col-3 lg:grid-cols-5"
+    >
+      @for (product of productdata.slice(0,20)| search :searchvalue ; track
+      product._id) {
+
+      <div class="product px-4 cursor-pointer">
+    <div class="flex justify-end" (click)="addtowishlist(product._id)">
+      <button >  <i class="fa-solid fa-heart mt-3 fa-xl text-emerald-400 hover:text-emerald-800 transition-all duration-300"></i>    </button>
+          
+        </div>
+
+        <div [routerLink]="['/Prod-details', product._id]">
+          <div class="mt-4">
+            <img [src]="product.imageCover" [alt]="product.title" />
+          </div>
+          <div class="mt-4">
+            <h1>{{ product.category.name }}</h1>
+            <h1>{{ product.title.split(" ").slice(0, 3).join(" ") }}</h1>
+          </div>
+          <div class="flex mt-4 flex-wrap justify-between items-center">
+            <h3>{{ product.price }}</h3>
+            <span
+              ><i class="rating-color fa-color fa-solid fa-star"></i
+              >{{ product.ratingsAverage }}</span
+            >
+          </div>
+        </div>
+
+        <div>
+          <button
+            (click)="addtocart(product._id)"
+            type="button"
+            class="but w-[100%] mt-3 text-white bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          >
+            Add To Cart
+          </button>
+        </div>
+      </div>
+
+      }
+    </div>
+  </div>
+</section>
+
+}

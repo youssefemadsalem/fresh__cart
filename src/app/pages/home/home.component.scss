@@ -1,0 +1,13 @@
+.product {
+  .but {
+    transform: translateY(300%) ;
+    transition: all 0.7s;
+  }
+  &:hover{
+
+.but{
+    transform: translateY(0%) ;
+}
+
+  }
+}

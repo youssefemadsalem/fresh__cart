@@ -1,0 +1,21 @@
+
+
+
+@if(catodata!=null){ 
+  <div class="container p-4 w-[90%] mx-auto cursor-pointer">
+  <div
+    class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-col-3 lg:grid-cols-5"
+  >
+  @for (cato of catodata; track cato._id) {
+      <div class="product p-4">
+        <div class="mt-4">
+          <img [src]="cato.image" [alt]="cato.name" class="w-full h-[250px]" />
+        </div>
+        <div class="mt-4">
+          <h1>{{ cato.name}}</h1>
+        </div>
+      </div>
+  }
+  </div>
+</div>   }
+

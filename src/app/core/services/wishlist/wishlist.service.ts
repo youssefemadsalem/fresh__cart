@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { env } from '../../../shared/environement/enivroment';
 import { Observable } from 'rxjs';
 
@@ -7,8 +8,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class WishlistService {
-  usertoken:any = {token : sessionStorage.getItem('token')}
-  constructor(private _HttpClient: HttpClient) { }
+  usertoken:any;
+  
+  constructor(private _HttpClient: HttpClient, @Inject(PLATFORM_ID) private _PLATFORM_ID: any) { 
+    if(isPlatformBrowser(this._PLATFORM_ID)){
+      this.usertoken = {token : sessionStorage.getItem('token')}
+    } else {
+      this.usertoken = {}
+    }
+  }
 
   getuserwishlist(): Observable<any> {
     return this._HttpClient.get(`${env.base}/api/v1/wishlist` , {headers :this.usertoken});

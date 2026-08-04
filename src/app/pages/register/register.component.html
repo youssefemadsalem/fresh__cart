@@ -1,5 +1,5 @@
-<section class="bg-slate-200 rounded-md p-4 my-4 w-[90%] mx-auto shadow-md">
-  <h1 class="text-emerald-400 font-black text-4xl">Register:</h1>
+<section class="bg-white rounded-3xl p-8 my-12 w-[90%] max-w-xl mx-auto shadow-2xl border border-gray-100">
+  <h1 class="text-emerald-500 font-extrabold text-4xl mb-8 text-center tracking-tight">Create an Account</h1>
 
   <form [formGroup]="registerform" (ngSubmit)="register()">
     <div class="my-3">
@@ -216,7 +216,7 @@
 
     <button
       [disabled]="registerform.invalid"
-      class="rounded-md bg-emerald-400 p-2 text-xl text-white hover:bg-emerald-700 hover:shadow-md transition-all duration-300 disabled:bg-slate-500 w-full"
+      class="btn-main w-full py-3 text-lg mt-6 shadow-lg hover:shadow-xl transition-all duration-300 flex justify-center items-center gap-2"
     >
     @if (signup) {   <span>  sigh up   </span>   }
 @if (spinner) { <span>   <i class="fa-solid fa-spinner fa-spin"></i>   </span>     }

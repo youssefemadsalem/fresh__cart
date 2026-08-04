@@ -1,0 +1,41 @@
+<section class="my-8 p-4">
+  <div class="container p-4 w-[90%] mx-auto">
+    <h2 class="text-3xl font-extrabold text-slate-800 mb-8 tracking-tight border-b border-gray-100 pb-4">Category Products</h2>
+    
+    @if (categoryDetails && categoryDetails.length > 0) {
+      <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        @for (product of categoryDetails; track product._id) {
+          <div class="product p-5 flex flex-col justify-between relative group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-50">
+            <div class="cursor-pointer" [routerLink]="['/Prod-details', product._id]">
+              <div class="mt-2 overflow-hidden rounded-xl">
+                <img [src]="product.imageCover" [alt]="product.title" class="w-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="mt-4">
+                <h4 class="text-emerald-500 font-semibold text-sm uppercase tracking-wide">{{ product.category.name }}</h4>
+                <h1 class="font-bold text-slate-800 text-lg leading-tight mt-1">{{ product.title.split(" ").slice(0, 3).join(" ") }}</h1>
+              </div>
+              <div class="flex mt-3 mb-2 flex-wrap justify-between items-center">
+                <h3 class="font-bold text-slate-900">{{ product.price | currency:'GBP' }}</h3>
+                <span class="flex items-center gap-1 font-medium text-slate-600 bg-slate-50 px-2 py-1 rounded-full text-sm"
+                  ><i class="rating-color fa-solid fa-star"></i
+                  >{{ product.ratingsAverage }}</span
+                >
+              </div>
+            </div>
+            
+            <div class="mt-auto pt-4">
+              <button (click)="addtocart(product._id)" type="button" class="btn-main w-full py-2 shadow-sm hover:shadow-md">Add To Cart</button>
+            </div>
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="text-center py-20 bg-white rounded-3xl shadow-sm border border-gray-100">
+        <i class="fa-solid fa-box-open text-6xl text-gray-300 mb-4"></i>
+        <h3 class="text-2xl font-bold text-slate-700">No products found</h3>
+        <p class="text-slate-500 mt-2">There are currently no products available in this category.</p>
+        <button routerLink="/categories" class="btn-main mt-6">Back to Categories</button>
+      </div>
+    }
+  </div>
+</section>

@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { Icato } from '../../core/interfaces/icato';
 import { Subscription } from 'rxjs';
 import { CatoService } from '../../core/services/cato/cato.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cato',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './cato.component.html',
   styleUrl: './cato.component.scss'
 })

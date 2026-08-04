@@ -1,5 +1,5 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductService } from '../../core/services/products/product.service';
 import { Subscription } from 'rxjs';
 import { IProduct } from '../../core/interfaces/product';
@@ -8,7 +8,7 @@ import { Branddetails } from '../../core/interfaces/branddetails';
 
 @Component({
   selector: 'app-brandsdetails',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './brandsdetails.component.html',
   styleUrl: './brandsdetails.component.scss'
 })

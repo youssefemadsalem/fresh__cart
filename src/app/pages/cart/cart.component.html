@@ -1,44 +1,46 @@
-<section class="bg-slate-200 rounded-md shadow-md p-4 my-4 mx-auto w-2/3">
-  <h1 class="font-black text-4xl text-emerald-300 my-3">cart</h1>
-  <h3 class="font-black text-2xl text-emerald-300">total cart price : {{cartdata.totalCartPrice | currency : 'GBP'}}</h3>
+<section class="bg-white rounded-3xl shadow-xl p-8 my-8 mx-auto w-11/12 md:w-3/4 lg:w-2/3 border border-gray-100">
+  <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-100 pb-6 mb-6">
+    <h1 class="font-extrabold text-3xl text-slate-800 tracking-tight">Shopping Cart</h1>
+    <h3 class="font-bold text-xl text-emerald-600 mt-2 sm:mt-0 bg-emerald-50 px-4 py-2 rounded-lg">Total: {{cartdata.totalCartPrice | currency : 'GBP'}}</h3>
+  </div>
 
-
-
-
-    <div class="container w-[90%] mx-auto">
-    @for ( product of cartdata.products ; track product.product ) {  
-    <div class="flex flex-wrap justify-between items-center border-b  border-b-4 border-gray-400 py-2">
-      <div class="w-full sm:w-1/5">
-        <div>
-          <img [src]="product.product.imageCover" alt="" class="w-full object-contain" />
+  <div class="container w-full mx-auto">
+    @for (product of cartdata.products; track product.product) {  
+    <div class="flex flex-wrap justify-between items-center border-b border-gray-100 py-6 hover:bg-slate-50 transition-colors rounded-2xl px-2 sm:px-4">
+      <div class="w-full sm:w-1/5 mb-4 sm:mb-0">
+        <div class="rounded-xl overflow-hidden border border-gray-100 bg-white">
+          <img [src]="product.product.imageCover" alt="" class="w-full object-contain mix-blend-multiply" />
         </div>
       </div>
-      <div class="w-full sm:w-1/2">
+      <div class="w-full sm:w-1/2 px-0 sm:px-6 mb-4 sm:mb-0">
         <div>
-          <h1 class="font-black text-3xl my-3">{{product.product.title}}</h1>
-          <h2 class="ont-black text-2xl my-3 text-emerald-400">price: {{product.price}}</h2>
-          <h3 class="cursor-pointer text-red-500" (click)="remove(product.product._id)">
-            remove <span><i class="fa-solid fa-trash"></i></span>
-          </h3>
+          <h1 class="font-bold text-xl text-slate-800 leading-tight mb-2">{{product.product.title}}</h1>
+          <h2 class="font-semibold text-lg text-emerald-500 mb-4">{{product.price | currency : 'GBP'}}</h2>
+          <button class="text-red-400 hover:text-red-600 font-medium transition-colors text-sm flex items-center gap-2 group" (click)="remove(product.product._id)">
+            <i class="fa-solid fa-trash group-hover:scale-110 transition-transform"></i> Remove Item
+          </button>
         </div>
       </div>
       <div class="w-full sm:w-1/5">
-        <div class=" text-emerald-400 text-2xl flex flex-wrap justify-between">
-          <span (click)="update(product.product._id,product.count+1)"><i class="fa-solid fa-circle-plus cursor-pointer"></i></span>
-
-          <h3>{{product.count}}</h3>
-
-@if (product.count>1) {          
-  <span (click)="update(product.product._id,product.count-1)" ><i class="fa-solid fa-circle-minus cursor-pointer"></i></span>
-}        </div>
+        <div class="flex items-center justify-between bg-white rounded-full py-2 px-4 border border-gray-200 shadow-sm">
+          @if (product.count > 1) {          
+            <button class="text-slate-400 hover:text-emerald-500 hover:scale-110 transition-all text-xl focus:outline-none p-1" (click)="update(product.product._id, product.count - 1)"><i class="fa-solid fa-circle-minus"></i></button>
+          } @else {
+            <div class="w-7"></div>
+          }
+          <span class="font-bold text-slate-700 text-lg w-8 text-center">{{product.count}}</span>
+          <button class="text-slate-400 hover:text-emerald-500 hover:scale-110 transition-all text-xl focus:outline-none p-1" (click)="update(product.product._id, product.count + 1)"><i class="fa-solid fa-circle-plus"></i></button>
+        </div>
       </div>
     </div>
- 
- }
+    }
 
-@if (cartdata.products.length>0) {<div class="my-3 "> <button [routerLink]="['/checkout',cartdata._id]"  class=" w-[100%] mt-3 text-white bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">check out </button></div>
-}
-
-</div>
-
+    @if (cartdata.products.length > 0) {
+    <div class="mt-8 flex justify-end">
+      <button [routerLink]="['/checkout', cartdata._id]" class="btn-main w-full sm:w-auto text-lg px-10 py-4 shadow-lg hover:shadow-xl rounded-xl flex items-center justify-center gap-3">
+        Proceed to Checkout <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+    }
+  </div>
 </section>

@@ -1,19 +1,19 @@
-<section>
-    <div class="container p-4 w-[90%] mx-auto">
-      <div
-        class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-col-3 lg:grid-cols-5"
-      >
-        @for (items of  brandsdetail ; track items._id) {
-      <div class="product p-4">
-          <div class="mt-4">
-            <img [src]="items.imageCover" [alt]="items.title" />
-          </div>
-          <div class="mt-4 text-center">
-            <h1>{{ items.title}}</h1>
+<section class="my-8 p-4">
+  <div class="container p-4 w-[90%] mx-auto">
+    <h2 class="text-3xl font-extrabold text-slate-800 mb-8 tracking-tight border-b border-gray-100 pb-4">Brand Products</h2>
+    <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      @for (items of brandsdetail; track items._id) {
+        <div class="product p-5 flex flex-col justify-between group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-50 relative">
+          <div class="cursor-pointer" [routerLink]="['/Prod-details', items._id]">
+            <div class="mt-2 overflow-hidden rounded-xl">
+              <img [src]="items.imageCover" [alt]="items.title" class="w-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div class="mt-4">
+              <h1 class="font-bold text-slate-800 text-lg leading-tight mt-1 truncate">{{ items.title }}</h1>
+            </div>
           </div>
         </div>
-  
-        }
-      </div>
+      }
     </div>
-  </section>
+  </div>
+</section>

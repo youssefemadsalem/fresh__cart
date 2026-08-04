@@ -1,48 +1,40 @@
-<section class="p-4 my-5 w-[90%]">
-  <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-x-4 items-center">
-    <div class="product-slider">
-    
-    
+<section class="p-8 my-8 w-11/12 mx-auto bg-white rounded-3xl shadow-xl border border-gray-100">
+  <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-10 items-center">
+    <div class="product-slider rounded-2xl overflow-hidden bg-white">
       <section>
         <div class="container w-[90%] mx-auto">
           <owl-carousel-o [options]="customOptionsfordetails">
-            @for (img of productsdetail.images ;track img) {
-      
+            @for (img of productsdetail.images; track img) {
             <ng-template carouselSlide>
-              <img [src]="img" [alt]="productsdetail.title" class="h-[400px] object-contain m-auto" />
+              <img [src]="img" [alt]="productsdetail.title" class="h-[400px] object-contain m-auto hover:scale-105 transition-transform duration-500 cursor-pointer" />
             </ng-template>
-      
             }
           </owl-carousel-o>
         </div>
       </section>
-    
-    
     </div>
 
-    <div class="">
-      <h1>{{ productsdetail.title }}</h1>
-      <p>{{ productsdetail.description }}</p>
-
-      <h3>{{ productsdetail.category.name }}</h3>
+    <div class="flex flex-col h-full justify-center">
+      <h3 class="text-emerald-500 font-bold uppercase tracking-wider text-sm mb-2">{{ productsdetail.category.name }}</h3>
+      <h1 class="text-4xl font-extrabold text-slate-800 leading-tight mb-4">{{ productsdetail.title }}</h1>
+      <p class="text-slate-600 text-lg leading-relaxed mb-6">{{ productsdetail.description }}</p>
       
-    <div class="flex mt-4 flex-wrap justify-between items-center">
-        <h3>{{ productsdetail.price }}</h3>
-        <span
-          ><i class="rating-color fa-color fa-solid fa-star"></i
+      <div class="flex mt-4 mb-8 flex-wrap justify-between items-center bg-slate-50 p-4 rounded-xl border border-gray-100">
+        <h3 class="text-3xl font-bold text-slate-800">{{ productsdetail.price | currency:'GBP' }}</h3>
+        <span class="flex items-center gap-2 text-lg font-medium text-slate-700 bg-white px-3 py-1 rounded-full shadow-sm"
+          ><i class="rating-color fa-solid fa-star"></i
           >{{ productsdetail.ratingsAverage }}</span
         >
       </div>
       <div>
         <button
-        (click)="addtocart(productsdetail._id)"
+          (click)="addtocart(productsdetail._id)"
           type="button"
-          class="but mt-3 text-white bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          class="btn-main w-full py-4 text-xl shadow-lg hover:shadow-xl flex items-center justify-center gap-3"
         >
-          Add To Cart
+          <i class="fa-solid fa-cart-shopping"></i> Add To Cart
         </button>
       </div>
     </div>
-
   </div>
 </section>

@@ -6,26 +6,35 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
 :root {
-  --main-color: #0aad0a;
-  --light-color: #f0f3f2;
-  --shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
-    rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
-    rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
+  --main-color: #10b981;
+  --light-color: #f8fafc;
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --font-family: "Encode Sans Expanded", sans-serif;
-  --rating-color: #ffc908;
+  --rating-color: #fbbf24;
 }
 
 body {
   font-family: var(--font-family) !important;
+  background-color: #f8fafc;
+}
+
+/* Glassmorphism Navigation */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .nav-link {
-  transition: unset !important;
+  transition: all 0.3s ease !important;
 }
 .active-link {
   background-color: var(--main-color) !important;
-  color: var(--light-color) !important;
-  border-radius: 5px;
+  color: #fff !important;
+  border-radius: 9999px;
+  box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.39);
 }
 
 .rating-color {
@@ -40,14 +49,18 @@ a:hover {
 }
 
 .product {
-  border-radius: 5px;
-  border: solid 1px var(--main-color);
-  transition: box-shadow 0.5s;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  background: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+  box-shadow: var(--shadow);
 }
 
 .product:hover {
-  box-shadow: 0 0 10px #11bd1168;
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-5px);
 }
 
 .font-sm {
@@ -64,20 +77,25 @@ a:hover {
 }
 .btn-main {
   background-color: var(--main-color);
-  padding: 7px 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
   color: #fff;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.5s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
 }
 .btn-main:disabled {
   cursor: not-allowed;
-  background-color: #ccc;
+  background-color: #9ca3af;
+  box-shadow: none;
 }
 .btn-main:disabled:hover {
-  background-color: #ccc;
+  background-color: #9ca3af;
 }
 .btn-main:hover {
-  background-color: #11bd11;
+  background-color: #059669;
+  box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
+  transform: translateY(-1px);
 }

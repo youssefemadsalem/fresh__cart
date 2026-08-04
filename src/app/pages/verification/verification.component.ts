@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthincationService } from '../../core/services/auth/authincation.service';
 import {
   FormControl,
@@ -10,7 +10,7 @@ import {
 
 @Component({
   selector: 'app-verification',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './verification.component.html',
   styleUrl: './verification.component.scss',
 })

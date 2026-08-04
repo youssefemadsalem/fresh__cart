@@ -13,10 +13,11 @@ import { RouterLink } from '@angular/router';
 import { CartService } from '../../core/services/cart/cart.service';
 import { WishlistService } from '../../core/services/wishlist/wishlist.service';
 import { ToastrService } from 'ngx-toastr';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [CarouselModule, FormsModule, SearchPipe, RouterLink],
+  imports: [CarouselModule, FormsModule, SearchPipe, RouterLink, CurrencyPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

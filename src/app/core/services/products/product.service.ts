@@ -24,6 +24,12 @@ export class ProductService {
     });
   }
 
+  getproductincategories(value: string): Observable<any> {
+    return this._HttpClient.get(`${env.base}/api/v1/products`, {
+      params: { category: value },
+    });
+  }
+
 
 
 

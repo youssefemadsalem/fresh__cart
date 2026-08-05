@@ -14,7 +14,7 @@ export class CartService {
   constructor(private _HttpClient: HttpClient,@Inject(PLATFORM_ID) private _PLATFORM_ID:any ) { 
     
     if(isPlatformBrowser(this._PLATFORM_ID)){
-      this.usertoken = {token : sessionStorage.getItem('token')}
+      this.usertoken = {token : sessionStorage.getItem('token') || ''}
     }else{ this.usertoken = {}}
   }
 

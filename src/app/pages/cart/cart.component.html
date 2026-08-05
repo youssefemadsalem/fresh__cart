@@ -1,4 +1,5 @@
 <section class="bg-white rounded-3xl shadow-xl p-8 my-8 mx-auto w-11/12 md:w-3/4 lg:w-2/3 border border-gray-100">
+  @if (cartdata) {
   <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-100 pb-6 mb-6">
     <h1 class="font-extrabold text-3xl text-slate-800 tracking-tight">Shopping Cart</h1>
     <h3 class="font-bold text-xl text-emerald-600 mt-2 sm:mt-0 bg-emerald-50 px-4 py-2 rounded-lg">Total: {{cartdata.totalCartPrice | currency : 'GBP'}}</h3>
@@ -43,4 +44,9 @@
     </div>
     }
   </div>
+  } @else {
+    <div class="flex justify-center items-center py-20">
+      <i class="fa-solid fa-spinner fa-spin text-4xl text-emerald-500"></i>
+    </div>
+  }
 </section>

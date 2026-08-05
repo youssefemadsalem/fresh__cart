@@ -5,7 +5,7 @@
         <div class="container w-[90%] mx-auto">
           <owl-carousel-o [options]="customOptionsfordetails">
             @for (img of productsdetail.images; track img) {
-            <ng-template carouselSlide>
+            <ng-template carouselSlide [id]="img">
               <img [src]="img" [alt]="productsdetail.title" class="h-[400px] object-contain m-auto hover:scale-105 transition-transform duration-500 cursor-pointer" />
             </ng-template>
             }

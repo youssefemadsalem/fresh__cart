@@ -6,13 +6,13 @@
       <!-- Main Carousel -->
       <div class="lg:col-span-3 rounded-2xl overflow-hidden shadow-lg border border-gray-100 bg-white">
         <owl-carousel-o [options]="staticOptions">
-          <ng-template carouselSlide><img src="./images/img1.avif" class="h-[400px] w-full object-cover" alt="Banner 1"/></ng-template>
-          <ng-template carouselSlide><img src="./images/img2.avif" class="h-[400px] w-full object-cover" alt="Banner 2"/></ng-template>
-          <ng-template carouselSlide><img src="./images/img3.avif" class="h-[400px] w-full object-cover" alt="Banner 3"/></ng-template>
-          <ng-template carouselSlide><img src="./images/img4.avif" class="h-[400px] w-full object-cover" alt="Banner 4"/></ng-template>
-          <ng-template carouselSlide><img src="./images/img5.avif" class="h-[400px] w-full object-cover" alt="Banner 5"/></ng-template>
-          <ng-template carouselSlide><img src="./images/img6.avif" class="h-[400px] w-full object-cover" alt="Banner 6"/></ng-template>
-          <ng-template carouselSlide><img src="./images/img7.avif" class="h-[400px] w-full object-cover" alt="Banner 7"/></ng-template>
+          <ng-template carouselSlide [id]="'static-1'"><img src="./images/img1.avif" class="h-[400px] w-full object-cover" alt="Banner 1"/></ng-template>
+          <ng-template carouselSlide [id]="'static-2'"><img src="./images/img2.avif" class="h-[400px] w-full object-cover" alt="Banner 2"/></ng-template>
+          <ng-template carouselSlide [id]="'static-3'"><img src="./images/img3.avif" class="h-[400px] w-full object-cover" alt="Banner 3"/></ng-template>
+          <ng-template carouselSlide [id]="'static-4'"><img src="./images/img4.avif" class="h-[400px] w-full object-cover" alt="Banner 4"/></ng-template>
+          <ng-template carouselSlide [id]="'static-5'"><img src="./images/img5.avif" class="h-[400px] w-full object-cover" alt="Banner 5"/></ng-template>
+          <ng-template carouselSlide [id]="'static-6'"><img src="./images/img6.avif" class="h-[400px] w-full object-cover" alt="Banner 6"/></ng-template>
+          <ng-template carouselSlide [id]="'static-7'"><img src="./images/img7.avif" class="h-[400px] w-full object-cover" alt="Banner 7"/></ng-template>
         </owl-carousel-o>
       </div>
 
@@ -39,7 +39,7 @@
     <owl-carousel-o [options]="customOptions">
       @for (cato of catodata; track cato._id) {
 
-      <ng-template carouselSlide>
+      <ng-template carouselSlide [id]="cato._id">
         <div class="p-2">
           <div class="rounded-2xl overflow-hidden shadow-md border border-gray-50 group bg-white">
             <img [src]="cato.image" [alt]="cato.name" class="w-full h-[250px] object-cover group-hover:scale-105 transition-transform duration-500" />

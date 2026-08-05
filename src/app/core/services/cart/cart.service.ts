@@ -10,13 +10,15 @@ import { isPlatformBrowser } from '@angular/common';
 export class CartService {
   cartNumber: BehaviorSubject<number> = new BehaviorSubject(0);
 
-  usertoken:any 
-  constructor(private _HttpClient: HttpClient,@Inject(PLATFORM_ID) private _PLATFORM_ID:any ) { 
-    
+  get usertoken(): any {
     if(isPlatformBrowser(this._PLATFORM_ID)){
-      this.usertoken = {token : sessionStorage.getItem('token') || ''}
-    }else{ this.usertoken = {}}
+      return {token : sessionStorage.getItem('token') || ''};
+    } else {
+      return {};
+    }
   }
+
+  constructor(private _HttpClient: HttpClient,@Inject(PLATFORM_ID) private _PLATFORM_ID:any ) {}
 
   getLoggedUserCart(): Observable<any> {
     return this._HttpClient.get(`${env.base}/api/v1/cart` , {headers :this.usertoken}).pipe(

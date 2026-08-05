@@ -8,15 +8,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class WishlistService {
-  usertoken:any;
-  
-  constructor(private _HttpClient: HttpClient, @Inject(PLATFORM_ID) private _PLATFORM_ID: any) { 
+  get usertoken(): any {
     if(isPlatformBrowser(this._PLATFORM_ID)){
-      this.usertoken = {token : sessionStorage.getItem('token') || ''}
+      return {token : sessionStorage.getItem('token') || ''};
     } else {
-      this.usertoken = {}
+      return {};
     }
   }
+
+  constructor(private _HttpClient: HttpClient, @Inject(PLATFORM_ID) private _PLATFORM_ID: any) {}
 
   getuserwishlist(): Observable<any> {
     return this._HttpClient.get(`${env.base}/api/v1/wishlist` , {headers :this.usertoken});

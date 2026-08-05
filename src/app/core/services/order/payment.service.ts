@@ -8,18 +8,18 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root',
 })
 export class PaymentService {
-  usertoken: any;
+  get usertoken(): any {
+    if (isPlatformBrowser(this._PLATFORM_ID)) {
+      return { token: sessionStorage.getItem('token') || '' };
+    } else {
+      return {};
+    }
+  }
 
   constructor(
     private _HttpClient: HttpClient,
     @Inject(PLATFORM_ID) private _PLATFORM_ID: any,
-  ) {
-    if (isPlatformBrowser(this._PLATFORM_ID)) {
-      this.usertoken = { token: sessionStorage.getItem('token') || '' };
-    } else {
-      this.usertoken = {};
-    }
-  }
+  ) {}
 
   checkout(c_id: string, data: object): Observable<any> {
     return this._HttpClient.post(
